@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dulce María Méndez | Desarrolladora Web</title>
+    <title>Mis Proyectos - Dulce María Méndez</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,7 @@
             overflow-x: hidden;
         }
 
-        /* Animación de partículas flotantes */
+        /* Partículas flotantes */
         .particles {
             position: fixed;
             top: 0;
@@ -67,6 +67,7 @@
             background: linear-gradient(45deg, #ff8c00, #ff6347);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            z-index: 1001;
         }
 
         .nav-links {
@@ -87,6 +88,10 @@
             color: #ff8c00;
         }
 
+        .nav-links a.active {
+            color: #ff8c00;
+        }
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -98,329 +103,357 @@
             transition: width 0.3s;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
+        }
+
+        /* Menu hamburguesa */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 50px 50px;
+            padding: 150px 50px 80px;
             position: relative;
             z-index: 2;
+            text-align: center;
         }
 
         .hero-content {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            max-width: 800px;
         }
 
-        .hero-text h1 {
+        .hero h1 {
             font-size: 56px;
             margin-bottom: 20px;
-            animation: slideInLeft 1s ease-out;
+            animation: slideInUp 1s ease-out;
         }
 
-        .hero-text .highlight {
+        .hero .highlight {
             background: linear-gradient(45deg, #ff8c00, #ff6347);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 64px;
         }
 
-        .hero-text p {
+        .hero p {
             font-size: 20px;
             color: #b8b8d1;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            animation: slideInLeft 1s ease-out 0.2s backwards;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            animation: slideInLeft 1s ease-out 0.4s backwards;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #ff8c00, #ff6347);
-            color: #fff;
-            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(255, 140, 0, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #ff8c00;
-            border: 2px solid #ff8c00;
-        }
-
-        .btn-secondary:hover {
-            background: #ff8c00;
-            color: #fff;
-        }
-
-        .hero-image {
-            position: relative;
-            animation: slideInRight 1s ease-out;
-        }
-
-        .code-window {
-            background: rgba(30, 30, 50, 0.9);
-            border-radius: 15px;
-            padding: 20px;
-            border: 2px solid #ff8c00;
-            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.3);
-        }
-
-        .window-header {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .window-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .dot-red { background: #ff5f56; }
-        .dot-yellow { background: #ffbd2e; }
-        .dot-green { background: #27c93f; }
-
-        .code-content {
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
             line-height: 1.8;
+            animation: slideInUp 1s ease-out 0.2s backwards;
         }
 
-        .code-line {
-            display: flex;
-            gap: 15px;
-        }
-
-        .line-number {
-            color: #666;
-            user-select: none;
-        }
-
-        .code-text {
-            color: #e6e6e6;
-        }
-
-        .keyword { color: #ff8c00; }
-        .string { color: #98c379; }
-        .function { color: #61afef; }
-
-        /* Sección Sobre Mí */
-        .about {
-            padding: 100px 50px;
-            background: rgba(22, 33, 62, 0.5);
+        /* Projects Section */
+        .projects {
+            padding: 80px 50px;
             position: relative;
             z-index: 2;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 60px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #ff8c00, transparent);
-        }
-
-        .about-content {
+        .projects-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 30px;
         }
 
-        .about-card {
-            background: rgba(30, 30, 50, 0.6);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .about-card:hover {
-            border-color: #ff8c00;
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .about-card h3 {
-            color: #ff8c00;
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-
-        /* Habilidades */
-        .skills {
-            padding: 100px 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-item {
-            background: rgba(30, 30, 50, 0.6);
-            padding: 30px 20px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
+        .project-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 20px;
+            padding: 35px;
             border: 2px solid rgba(255, 140, 0, 0.2);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        .skill-item:hover {
-            transform: scale(1.05);
+        .project-card:hover {
+            transform: translateY(-12px);
             border-color: #ff8c00;
-            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.4);
         }
 
-        .skill-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        /* Contacto */
-        .contact {
-            padding: 100px 50px;
-            background: rgba(22, 33, 62, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
+        .project-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff8c00, #ff6347);
+            border-radius: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: rgba(30, 30, 50, 0.6);
-            border-radius: 50px;
-            border: 2px solid #ff8c00;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: #fff;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3);
         }
 
-        .contact-item:hover {
-            background: #ff8c00;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4);
+        .project-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: white;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #b8b8d1;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background: rgba(255, 140, 0, 0.15);
+            color: #ff8c00;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff8c00, #ff6347);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(255, 140, 0, 0.5);
+        }
+
+        .project-link svg {
+            width: 18px;
+            height: 18px;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 40px 50px;
             background: rgba(26, 26, 46, 0.9);
             border-top: 2px solid rgba(255, 140, 0, 0.3);
             position: relative;
             z-index: 2;
         }
 
-        @keyframes slideInLeft {
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #b8b8d1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff8c00;
+        }
+
+        /* Animaciones */
+        @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
-        @keyframes slideInRight {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
+        /* Animation delays */
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.15s; }
+        .project-card:nth-child(3) { animation-delay: 0.2s; }
+        .project-card:nth-child(4) { animation-delay: 0.25s; }
+        .project-card:nth-child(5) { animation-delay: 0.3s; }
+        .project-card:nth-child(6) { animation-delay: 0.35s; }
+        .project-card:nth-child(7) { animation-delay: 0.4s; }
+        .project-card:nth-child(8) { animation-delay: 0.45s; }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
+            header {
+                padding: 15px 20px;
             }
-            
-            .hero-text h1 {
-                font-size: 36px;
-            }
-            
-            .hero-text .highlight {
-                font-size: 42px;
-            }
-            
+
             nav {
+                position: relative;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.98);
                 flex-direction: column;
+                padding: 20px;
+                gap: 0;
+                border-top: 2px solid rgba(255, 140, 0, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 15px 20px;
+                border-radius: 8px;
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                background: rgba(255, 140, 0, 0.1);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+                min-height: 50vh;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .projects {
+                padding: 50px 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
                 gap: 20px;
+            }
+
+            .project-card {
+                padding: 25px;
+            }
+
+            .project-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .project-icon svg {
+                width: 30px;
+                height: 30px;
+            }
+
+            .project-title {
+                font-size: 20px;
+            }
+
+            footer {
+                padding: 30px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -433,183 +466,238 @@
     <header>
         <nav>
             <div class="logo">DM</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="https://dulcemariaom1987.github.io/landing-proyectos/" target="_blank">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#" class="active">Proyectos</a></li>
+                <li><a href="../index.html#sobre-mi">Sobre Mí</a></li>
+                <li><a href="../index.html#habilidades">Habilidades</a></li>
+                <li><a href="../index.html#contacto">Contacto</a></li>
             </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="inicio">
+    <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Hola, soy<br><span class="highlight">Dulce María</span></h1>
-                <p>Desarrolladora Web con pasión por crear soluciones tecnológicas innovadoras y eficientes. Especializada en Java, Spring Boot, y desarrollo web moderno.</p>
-                <div class="cta-buttons">
-                    <a href="https://dulcemariaom1987.github.io/landing-proyectos/" target="_blank" class="btn btn-primary">Ver Proyectos</a>
-                    <a href="#contacto" class="btn btn-secondary">Contáctame</a>
+            <h1>Mis <span class="highlight">Proyectos</span></h1>
+            <p>Explora una colección de aplicaciones web interactivas diseñadas con HTML, CSS y JavaScript</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="projects-grid">
+            
+            <!-- Proyecto 1 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                    </svg>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="code-window">
-                    <div class="window-header">
-                        <div class="window-dot dot-red"></div>
-                        <div class="window-dot dot-yellow"></div>
-                        <div class="window-dot dot-green"></div>
-                    </div>
-                    <div class="code-content">
-                        <div class="code-line">
-                            <span class="line-number">1</span>
-                            <span class="code-text"><span class="keyword">class</span> <span class="function">Desarrolladora</span> {</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">2</span>
-                            <span class="code-text">  nombre: <span class="string">"Dulce María"</span></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">3</span>
-                            <span class="code-text">  skills: [</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">4</span>
-                            <span class="code-text">    <span class="string">"Java"</span>,</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">5</span>
-                            <span class="code-text">    <span class="string">"Spring Boot"</span>,</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">6</span>
-                            <span class="code-text">    <span class="string">"SQL"</span>,</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">7</span>
-                            <span class="code-text">    <span class="string">"RPA"</span></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">8</span>
-                            <span class="code-text">  ]</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">9</span>
-                            <span class="code-text">}</span>
-                        </div>
-                    </div>
+                <h3 class="project-title">Conversor de Unidades</h3>
+                <p class="project-description">
+                    Convierte entre diferentes unidades de medida: longitud, peso, temperatura y más.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">Responsive</span>
                 </div>
+                <a href="https://dulcemariaom1987.github.io/conversor-unidades/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Sobre Mí -->
-    <section class="about" id="sobre-mi">
-        <h2 class="section-title">Sobre Mí</h2>
-        <div class="about-content">
-            <div class="about-card">
-                <div class="card-icon">💼</div>
-                <h3>Experiencia</h3>
-                <p>+3 años desarrollando aplicaciones web, APIs RESTful y automatización de procesos con tecnologías modernas.</p>
+            <!-- Proyecto 2 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">App del Clima</h3>
+                <p class="project-description">
+                    Consulta el clima actual y pronóstico de cualquier ciudad del mundo en tiempo real.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">API</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Async/Await</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/app-clima/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
             </div>
-            <div class="about-card">
-                <div class="card-icon">🎓</div>
-                <h3>Educación</h3>
-                <p>Ingeniera Industrial con múltiples certificaciones en desarrollo web, bases de datos y metodologías ágiles.</p>
-            </div>
-            <div class="about-card">
-                <div class="card-icon">🚀</div>
-                <h3>Enfoque</h3>
-                <p>Apasionada por crear soluciones eficientes orientadas al usuario, con metodologías ágiles y trabajo colaborativo.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Habilidades -->
-    <section class="skills" id="habilidades">
-        <h2 class="section-title">Habilidades Técnicas</h2>
-        <div class="skills-container">
-            <div class="skill-item">
-                <div class="skill-icon">☕</div>
-                <h4>Java</h4>
+            <!-- Proyecto 3 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">Gestor de Tareas</h3>
+                <p class="project-description">
+                    Organiza tus tareas diarias con esta aplicación intuitiva y eficiente.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">LocalStorage</span>
+                    <span class="tag">CRUD</span>
+                    <span class="tag">DOM</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/gestor-tareas/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">🍃</div>
-                <h4>Spring Boot</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🌐</div>
-                <h4>HTML/CSS</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">⚡</div>
-                <h4>JavaScript</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">⚛️</div>
-                <h4>React</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🔺</div>
-                <h4>Angular</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🗄️</div>
-                <h4>Oracle SQL</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🔌</div>
-                <h4>API REST</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🐙</div>
-                <h4>Git/GitHub</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🐳</div>
-                <h4>Docker</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🤖</div>
-                <h4>RPA</h4>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">📊</div>
-                <h4>SCRUM</h4>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contacto -->
-    <section class="contact" id="contacto">
-        <h2 class="section-title">Contacto</h2>
-        <div class="contact-content">
-            <p style="font-size: 20px; color: #b8b8d1; margin-bottom: 20px;">¿Tienes un proyecto en mente? ¡Hablemos!</p>
-            <div class="contact-links">
-                <a href="mailto:dulcemariaom33@gmail.com" class="contact-item">
-                    <span>📧</span>
-                    <span>Email</span>
-                </a>
-                <a href="https://www.linkedin.com/in/dulce-maríaméndez-santiago-980708125" target="_blank" class="contact-item">
-                    <span>💼</span>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/dulcemariaom1987" target="_blank" class="contact-item">
-                    <span>🐙</span>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://wa.me/56975740012" class="contact-item">
-                    <span>📱</span>
-                    <span>Teléfono</span>
+            <!-- Proyecto 4 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">Conversor de Monedas</h3>
+                <p class="project-description">
+                    Convierte entre diferentes monedas con tasas de cambio actualizadas en tiempo real.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">API REST</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Finanzas</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/conversor-monedas/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
                 </a>
             </div>
+
+            <!-- Proyecto 5 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">Trivia de Preguntas</h3>
+                <p class="project-description">
+                    Pon a prueba tus conocimientos con preguntas de diferentes categorías y niveles.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Game Logic</span>
+                    <span class="tag">Timer</span>
+                    <span class="tag">Score System</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/trivia-preguntas/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Proyecto 6 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">Adivina el Número</h3>
+                <p class="project-description">
+                    Juego interactivo con diferentes niveles de dificultad y sistema de pistas.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Algoritmos</span>
+                    <span class="tag">Lógica</span>
+                    <span class="tag">Gamificación</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/adivinar-numero/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Proyecto 7 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">Lista de Compras</h3>
+                <p class="project-description">
+                    Organiza tus compras de manera eficiente con esta aplicación práctica y sencilla.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">LocalStorage</span>
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">Práctico</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/lista-compras/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Proyecto 8 -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h3 class="project-title">Portafolio Diseñadora</h3>
+                <p class="project-description">
+                    Sitio web elegante y moderno para mostrar trabajos de diseño gráfico.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Portfolio</span>
+                    <span class="tag">Design</span>
+                    <span class="tag">Responsive</span>
+                </div>
+                <a href="https://dulcemariaom1987.github.io/portafolio-disenadora/" target="_blank" class="project-link">
+                    Ver Proyecto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Dulce María Méndez Santiago. Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <p>&copy; 2025 Dulce María Méndez Santiago. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/dulce-maríaméndez-santiago-980708125" target="_blank">LinkedIn</a>
+                <a href="https://github.com/dulcemariaom1987" target="_blank">GitHub</a>
+                <a href="mailto:dulcemariaom33@gmail.com">Email</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -627,6 +715,25 @@
             particlesContainer.appendChild(particle);
         }
 
+        // Menu toggle para móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -639,8 +746,4 @@
         });
     </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 8934b90e3be3c4c1cf38eaa9a513723192ad5d40
