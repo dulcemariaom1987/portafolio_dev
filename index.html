@@ -1,5 +1,6 @@
 <html lang="es">
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,10 +38,23 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-100px) translateX(50px); }
-            50% { transform: translateY(-50px) translateX(-50px); }
-            75% { transform: translateY(-150px) translateX(30px); }
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            25% {
+                transform: translateY(-100px) translateX(50px);
+            }
+
+            50% {
+                transform: translateY(-50px) translateX(-50px);
+            }
+
+            75% {
+                transform: translateY(-150px) translateX(30px);
+            }
         }
 
         /* Header */
@@ -207,9 +221,17 @@
             border-radius: 50%;
         }
 
-        .dot-red { background: #ff5f56; }
-        .dot-yellow { background: #ffbd2e; }
-        .dot-green { background: #27c93f; }
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .dot-green {
+            background: #27c93f;
+        }
 
         .code-content {
             font-family: 'Courier New', monospace;
@@ -231,9 +253,17 @@
             color: #e6e6e6;
         }
 
-        .keyword { color: #ff8c00; }
-        .string { color: #98c379; }
-        .function { color: #61afef; }
+        .keyword {
+            color: #ff8c00;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .function {
+            color: #61afef;
+        }
 
         /* Sección Sobre Mí */
         .about {
@@ -388,6 +418,7 @@
                 opacity: 0;
                 transform: translateX(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -399,6 +430,7 @@
                 opacity: 0;
                 transform: translateX(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -409,22 +441,31 @@
             .hero-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero-text h1 {
                 font-size: 36px;
             }
-            
+
             .hero-text .highlight {
                 font-size: 42px;
             }
-            
+
+            .hero {
+                padding-top: 160px;
+            }
+
             nav {
                 flex-direction: column;
                 gap: 20px;
             }
+
+            header {
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Partículas animadas -->
     <div class="particles" id="particles"></div>
@@ -448,9 +489,11 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Hola, soy<br><span class="highlight">Dulce María</span></h1>
-                <p>Desarrolladora Web con pasión por crear soluciones tecnológicas innovadoras y eficientes. Especializada en Java, Spring Boot, y desarrollo web moderno.</p>
+                <p>Desarrolladora Web con pasión por crear soluciones tecnológicas innovadoras y eficientes.
+                    Especializada en Java, Spring Boot, y desarrollo web moderno.</p>
                 <div class="cta-buttons">
-                    <a href="https://dulcemariaom1987.github.io/landing-proyectos/" target="_blank" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="https://dulcemariaom1987.github.io/landing-proyectos/" target="_blank"
+                        class="btn btn-primary">Ver Proyectos</a>
                     <a href="#contacto" class="btn btn-secondary">Contáctame</a>
                 </div>
             </div>
@@ -464,35 +507,36 @@
                     <div class="code-content">
                         <div class="code-line">
                             <span class="line-number">1</span>
-                            <span class="code-text"><span class="keyword">class</span> <span class="function">Desarrolladora</span> {</span>
+                            <span class="code-text"><span class="keyword">class</span> <span
+                                    class="function">Desarrolladora</span> {</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">2</span>
-                            <span class="code-text">  nombre: <span class="string">"Dulce María"</span></span>
+                            <span class="code-text"> nombre: <span class="string">"Dulce María"</span></span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">3</span>
-                            <span class="code-text">  skills: [</span>
+                            <span class="code-text"> skills: [</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">4</span>
-                            <span class="code-text">    <span class="string">"Java"</span>,</span>
+                            <span class="code-text"> <span class="string">"Java"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">5</span>
-                            <span class="code-text">    <span class="string">"Spring Boot"</span>,</span>
+                            <span class="code-text"> <span class="string">"Spring Boot"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">6</span>
-                            <span class="code-text">    <span class="string">"SQL"</span>,</span>
+                            <span class="code-text"> <span class="string">"SQL"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">7</span>
-                            <span class="code-text">    <span class="string">"RPA"</span></span>
+                            <span class="code-text"> <span class="string">"RPA"</span></span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">8</span>
-                            <span class="code-text">  ]</span>
+                            <span class="code-text"> ]</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">9</span>
@@ -511,17 +555,20 @@
             <div class="about-card">
                 <div class="card-icon">💼</div>
                 <h3>Experiencia</h3>
-                <p>+3 años desarrollando aplicaciones web, APIs RESTful y automatización de procesos con tecnologías modernas.</p>
+                <p>+3 años desarrollando aplicaciones web, APIs RESTful y automatización de procesos con tecnologías
+                    modernas.</p>
             </div>
             <div class="about-card">
                 <div class="card-icon">🎓</div>
                 <h3>Educación</h3>
-                <p>Ingeniera Industrial con múltiples certificaciones en desarrollo web, bases de datos y metodologías ágiles.</p>
+                <p>Ingeniera Industrial con múltiples certificaciones en desarrollo web, bases de datos y metodologías
+                    ágiles.</p>
             </div>
             <div class="about-card">
                 <div class="card-icon">🚀</div>
                 <h3>Enfoque</h3>
-                <p>Apasionada por crear soluciones eficientes orientadas al usuario, con metodologías ágiles y trabajo colaborativo.</p>
+                <p>Apasionada por crear soluciones eficientes orientadas al usuario, con metodologías ágiles y trabajo
+                    colaborativo.</p>
             </div>
         </div>
     </section>
@@ -585,13 +632,15 @@
     <section class="contact" id="contacto">
         <h2 class="section-title">Contacto</h2>
         <div class="contact-content">
-            <p style="font-size: 20px; color: #b8b8d1; margin-bottom: 20px;">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+            <p style="font-size: 20px; color: #b8b8d1; margin-bottom: 20px;">¿Tienes un proyecto en mente? ¡Hablemos!
+            </p>
             <div class="contact-links">
                 <a href="mailto:dulcemariaom33@gmail.com" class="contact-item">
                     <span>📧</span>
                     <span>Email</span>
                 </a>
-                <a href="https://www.linkedin.com/in/dulce-maríaméndez-santiago-980708125" target="_blank" class="contact-item">
+                <a href="https://www.linkedin.com/in/dulce-maríaméndez-santiago-980708125" target="_blank"
+                    class="contact-item">
                     <span>💼</span>
                     <span>LinkedIn</span>
                 </a>
@@ -639,4 +688,3 @@
         });
     </script>
 </body>
-
